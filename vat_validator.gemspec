@@ -18,4 +18,7 @@ Gem::Specification.new do |s|
 
   s.rubygems_version = "1.3.4"
   s.required_rubygems_version = Gem::Requirement.new(">= 1.3.6")
+  
+  s.add_dependency 'soap'
+  s.add_dependency 'soap4r'
 end

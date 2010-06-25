@@ -47,3 +47,7 @@ class CountryCheckedInvoice < BaseTestModel
     end
   end
 end
+
+class ViesCheckedInvoice < BaseTestModel  
+  validates :vat_number, :vat => {:vies => true}
+end

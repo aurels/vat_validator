@@ -2,7 +2,7 @@
 
 Use this plugin to validate VAT numbers for european countries.
 
-= Usage
+= Basic Usage
 
 To validate a model field as a valid intracom VAT number :
 
@@ -38,6 +38,16 @@ Example :
       end
     end
   end
+
+== Validating the Number at VIES
+
+It's also possible to have the VAT number validated against Europa's VIES
+webservice. Simply use the :vies option like this :
+
+  validates :vat_number, :vat => { :vies => true }
+
+Keep in mind that the webservice might be offline at some time for some
+countries. Check the VIES FAQ for more information about that.
 
 = Installation
 
