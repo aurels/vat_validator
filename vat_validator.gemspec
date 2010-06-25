@@ -4,8 +4,8 @@ Gem::Specification.new do |s|
   s.description = "Validator for european countries VAT numbers for ActiveModel"
   s.homepage = "http://github.com/aurels/vat_validator"
   
-  s.version = "1.0"
-  s.date = "2010-05-19"
+  s.version = "1.1"
+  s.date = "2010-06-25"
   
   s.authors = ["Aurélien Malisart"]
   s.email = "aurelien.malisart@gmail.com"
