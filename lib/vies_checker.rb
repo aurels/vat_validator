@@ -1,5 +1,10 @@
 require 'rubygems'
-require 'soap/wsdlDriver'
+
+begin
+  require 'soap/wsdlDriver'
+rescue LoadError
+  puts "soap not found"
+end
 
 module VatValidator
   class ViesChecker

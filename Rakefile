@@ -1,11 +1,9 @@
 require 'rubygems'
 require 'rake'
-require 'spec/rake/spectask'
 
 desc "Run specs"
-Spec::Rake::SpecTask.new do |t|
-  t.spec_files = Rake::FileList["spec/**/*_spec.rb"]
-  t.spec_opts  = ["-c"]
+task :spec do
+  puts `rspec spec/vat_validator/*_spec.rb`
 end
  
 task :default => :spec

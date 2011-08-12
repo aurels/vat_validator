@@ -55,6 +55,11 @@ In your project's Gemfile :
 
 gem 'vat_validator'
 
+If you want VIES integration, use this too :
+
+gem 'soap'
+gem 'soap4r'
+
 = Tests
 
 If you want to run the specs :
