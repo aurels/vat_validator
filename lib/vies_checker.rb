@@ -3,7 +3,7 @@ require 'rubygems'
 begin
   require 'soap/wsdlDriver'
 rescue LoadError
-  puts "soap not found"
+  # soap not found
 end
 
 module VatValidator
