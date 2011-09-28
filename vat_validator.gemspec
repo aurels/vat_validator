@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.rubygems_version = "1.6.2"
   s.required_rubygems_version = Gem::Requirement.new(">= 1.3.6")
 
-  s.add_dependency('active_model')
+  s.add_dependency('activemodel')
   s.add_dependency('savon', ">= 0.9.7")
   s.add_development_dependency('rspec', ">= 2.0.0")
 end
