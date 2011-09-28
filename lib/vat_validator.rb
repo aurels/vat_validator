@@ -1,4 +1,5 @@
 require 'active_model'
+require 'exceptions'
 require 'vies_checker' rescue nil
 
 module VatValidator
@@ -61,8 +62,14 @@ module VatValidator
       end
       
       if format_valid && options[:vies]
-        unless ViesChecker.check(value.to_s[0..1], value.to_s[2..15])
-          record.errors.add(attribute, options[:message])
+        if options[:vies_host]
+          valid = ViesChecker.check(value.to_s[0..1], value.to_s[2..15], options[:vies_host])
+        else
+          valid = ViesChecker.check(value.to_s[0..1], value.to_s[2..15])
+        end
+
+        unless valid
+         record.errors.add(attribute, options[:message])
         end
       end
     end

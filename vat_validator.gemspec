@@ -4,10 +4,10 @@ Gem::Specification.new do |s|
   s.description = "Validator for european countries VAT numbers for ActiveModel"
   s.homepage = "http://github.com/aurels/vat_validator"
   
-  s.version = "1.1"
-  s.date = "2010-06-25"
+  s.version = "1.2"
+  s.date = "2011-09-28"
   
-  s.authors = ["Aurelien Malisart"]
+  s.authors = ["Aurelien Malisart", "Francois Stephany"]
   s.email = "aurelien.malisart@gmail.com"
   
   s.require_paths = ["lib"]
@@ -16,9 +16,10 @@ Gem::Specification.new do |s|
   
   s.has_rdoc = false
 
-  s.rubygems_version = "1.3.4"
+  s.rubygems_version = "1.6.2"
   s.required_rubygems_version = Gem::Requirement.new(">= 1.3.6")
-  
-  # s.add_dependency 'soap'
-  # s.add_dependency 'soap4r'
+
+  s.add_dependency('active_model')
+  s.add_dependency('savon', ">= 0.9.7")
+  s.add_development_dependency('rspec', ">= 2.0.0")
 end
