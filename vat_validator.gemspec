@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.homepage = "http://github.com/aurels/vat_validator"
   
   s.version = "1.2"
-  s.date = "2011-09-28"
+  s.date = "2011-09-30"
   
   s.authors = ["Aurelien Malisart", "Francois Stephany"]
   s.email = "aurelien.malisart@gmail.com"
