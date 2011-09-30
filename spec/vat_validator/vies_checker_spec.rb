@@ -14,6 +14,10 @@ describe ViesCheckedInvoice do
     ViesCheckedInvoice.new(:vat_number => 'BE000678345').should_not be_valid
   end
 
+  it "should not be valid if the input is not valid" do
+  	VatValidator::ViesChecker.check('blop').should_not be_true
+  end
+
   it "should raise an exception if VIES is unreachable" do
     lambda {WrongViesCheckedInvoice.new(:vat_number => 'BE0817331995').valid?}.should raise_error(VatValidator::ViesContactError)
   end
