@@ -48,6 +48,10 @@ class CountryCheckedInvoice < BaseTestModel
   end
 end
 
-class ViesCheckedInvoice < BaseTestModel  
+class ViesCheckedInvoice < BaseTestModel
   validates :vat_number, :vat => {:vies => true}
+end
+
+class WrongViesCheckedInvoice < BaseTestModel
+  validates :vat_number, :vat => {:vies => true, :vies_host => 'http://agilitic.com/wrong.wsdl'}
 end
