@@ -2,8 +2,12 @@ require 'rubygems'
 require 'savon'
 
 module VatValidator
-  class ViesChecker  
-    def self.check(country_code, vat_number, vies_host='http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl')
+  class ViesChecker
+    def self.check(complete_vat_number, vies_host='http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl')
+      
+      country_code = complete_vat_number[0..1]
+      vat_number   = complete_vat_number[2..15]
+
       client = Savon::Client.new(vies_host)
 
       begin
