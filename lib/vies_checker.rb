@@ -9,7 +9,7 @@ require 'savon'
 # 'TIMEOUT'             => 'The Member State service could not be reached in time, try again later or with another Member State',
 # 'SERVER_BUSY'         => 'The service cannot process your request. Try again later.'
 
-module VatValidator
+module VatValidations
   class ViesChecker
     def self.check(complete_vat_number, vies_host='http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl')
 

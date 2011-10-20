@@ -1,3 +1,3 @@
-module VatValidator
+module VatValidations
   class ViesContactError < StandardError; end
 end

@@ -2,7 +2,7 @@ require 'active_model'
 require 'exceptions'
 require 'vies_checker' rescue nil
 
-module VatValidator
+module VatValidations
   
   # Constants ------------------------------------------------------------------
   
@@ -78,4 +78,4 @@ module VatValidator
   end
 end
 
-ActiveModel::Validations.__send__(:include, VatValidator)
+ActiveModel::Validations.__send__(:include, VatValidations)
