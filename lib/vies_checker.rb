@@ -11,7 +11,7 @@ require 'savon'
 
 module VatValidations
   class ViesChecker
-    def self.check(complete_vat_number, vies_host='http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl')
+    def self.check(complete_vat_number, return_extra_infos = false, vies_host='http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl')
 
       country_code = complete_vat_number[0..1]
       vat_number   = complete_vat_number[2..15]
@@ -29,7 +29,15 @@ module VatValidations
       rescue Savon::SOAP::Fault => fault
         # https://github.com/rubiii/savon/blob/master/lib/savon/soap/fault.rb
         if fault.to_hash[:fault][:faultstring] == "{ 'INVALID_INPUT' }"
-          return false
+          if return_extra_infos
+            {
+              :valid => false,
+              :name  => nil
+            }
+          else
+            return false
+          end
+          
         else
           raise ViesContactError
         end
@@ -39,7 +47,14 @@ module VatValidations
       end
 
       if response.success?
-        return response[:check_vat_response][:valid]
+        if return_extra_infos
+          {
+            :valid => response[:check_vat_response][:valid],
+            :name  => response[:check_vat_response][:name]
+          }
+        else
+          return response[:check_vat_response][:valid]
+        end
       else
         raise ViesContactError
       end

@@ -50,9 +50,9 @@ module VatValidations
       
       if format_valid && options[:vies]
         if options[:vies_host]
-          valid = ViesChecker.check(value, options[:vies_host])
+          valid = ViesChecker.check(value, false, options[:vies_host])
         else
-          valid = ViesChecker.check(value)
+          valid = ViesChecker.check(value, false)
         end
 
         unless valid
