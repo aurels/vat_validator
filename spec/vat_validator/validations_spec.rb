@@ -70,10 +70,13 @@ describe Invoice do
 
   it "should validate well a ES vat number" do
     Invoice.new(:vat_number => "ES567345987").should be_valid
+    Invoice.new(:vat_number => "ESX67345987").should be_valid
+    Invoice.new(:vat_number => "ES56734598X").should be_valid
+    Invoice.new(:vat_number => "ESX6734598X").should be_valid
+
+    Invoice.new(:vat_number => "ES1XXXXXXX2").should_not be_valid
     Invoice.new(:vat_number => "ES5673459879").should_not be_valid
-    
     Invoice.new(:vat_number => "ES56734598").should_not be_valid
-    Invoice.new(:vat_number => "ES56734598J").should_not be_valid
   end
 
   # EE
