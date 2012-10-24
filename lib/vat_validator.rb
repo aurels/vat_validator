@@ -3,9 +3,9 @@ require 'exceptions'
 require 'vies_checker' rescue nil
 
 module VatValidations
-  
+
   # Constants ------------------------------------------------------------------
-  
+
   VAT_PATTERNS = {
       'DE' => /\ADE[0-9]{9}\Z/,                                # Germany
       'AT' => /\AATU[0-9]{8}\Z/,                               # Austria
@@ -13,7 +13,7 @@ module VatValidations
       'BG' => /\ABG[0-9]{9,10}\Z/,                             # Bulgaria
       'CY' => /\ACY[0-9]{8}[A-Z]\Z/,                           # Cyprus
       'DK' => /\ADK[0-9]{8}\Z/,                                # Denmark
-      'ES' => /\AES[0-9]{9}\Z/,                                # Spain
+      'ES' => /\AES[A-Z0-9]{1}[0-9]{7}[A-Z0-9]{1}\Z/,          # Spain
       'EE' => /\AEE[0-9]{9}\Z/,                                # Estonia
       'FI' => /\AFI[0-9]{8}\Z/,                                # Finland
       'FR' => /\AFR[A-Z0-9]{2}[0-9]{9}\Z/,                     # France
@@ -35,19 +35,19 @@ module VatValidations
       'SE' => /\ASE[0-9]{12}\Z/,                               # Sweden
       'CZ' => /\ACZ[0-9]{8,10}\Z/                              # Czech Republic
     }
-  
+
   # Classes --------------------------------------------------------------------
-    
+
   class VatValidator < ActiveModel::EachValidator
     def validate_each(record, attribute, value)
       format_valid = true
-      
+
       country_code = options[:country_method] ? record.send(options[:country_method]).to_s : nil
       unless VatNumber.new(value, country_code).valid?
         record.errors.add(attribute, options[:message])
         format_valid = false
       end
-      
+
       if format_valid && options[:vies]
         if options[:vies_host]
           valid = ViesChecker.check(value, false, options[:vies_host])
@@ -61,13 +61,13 @@ module VatValidations
       end
     end
   end
-  
+
   class VatNumber
     def initialize(number, country_code = nil)
       @number = number
       @country_code = country_code
     end
-    
+
     def valid?
       if @country_code
         VAT_PATTERNS.has_key?(@country_code) && @number.to_s =~ VAT_PATTERNS[@country_code]
