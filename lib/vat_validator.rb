@@ -13,7 +13,7 @@ module VatValidations
       'BG' => /\ABG[0-9]{9,10}\Z/,                             # Bulgaria
       'CY' => /\ACY[0-9]{8}[A-Z]\Z/,                           # Cyprus
       'DK' => /\ADK[0-9]{8}\Z/,                                # Denmark
-      'ES' => /\AES[0-9]{9}\Z/,                                # Spain
+      'ES' => /\AES[A-Z0-9]{1}[0-9]{7}[A-Z0-9]{1}\Z/,          # Spain
       'EE' => /\AEE[0-9]{9}\Z/,                                # Estonia
       'FI' => /\AFI[0-9]{8}\Z/,                                # Finland
       'FR' => /\AFR[A-Z0-9]{2}[0-9]{9}\Z/,                     # France
