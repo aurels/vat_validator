@@ -3,9 +3,9 @@ require 'exceptions'
 require 'vies_checker' rescue nil
 
 module VatValidations
-  
+
   # Constants ------------------------------------------------------------------
-  
+
   VAT_PATTERNS = {
       'DE' => /\ADE[0-9]{9}\Z/,                                # Germany
       'AT' => /\AATU[0-9]{8}\Z/,                               # Austria
@@ -35,19 +35,19 @@ module VatValidations
       'SE' => /\ASE[0-9]{12}\Z/,                               # Sweden
       'CZ' => /\ACZ[0-9]{8,10}\Z/                              # Czech Republic
     }
-  
+
   # Classes --------------------------------------------------------------------
-    
+
   class VatValidator < ActiveModel::EachValidator
     def validate_each(record, attribute, value)
       format_valid = true
-      
+
       country_code = options[:country_method] ? record.send(options[:country_method]).to_s : nil
       unless VatNumber.new(value, country_code).valid?
         record.errors.add(attribute, options[:message])
         format_valid = false
       end
-      
+
       if format_valid && options[:vies]
         if options[:vies_host]
           valid = ViesChecker.check(value, false, options[:vies_host])
@@ -61,13 +61,13 @@ module VatValidations
       end
     end
   end
-  
+
   class VatNumber
     def initialize(number, country_code = nil)
       @number = number
       @country_code = country_code
     end
-    
+
     def valid?
       if @country_code
         VAT_PATTERNS.has_key?(@country_code) && @number.to_s =~ VAT_PATTERNS[@country_code]
