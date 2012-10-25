@@ -3,17 +3,17 @@ Gem::Specification.new do |s|
   s.summary = "Validator for european countries VAT numbers for ActiveModel"
   s.description = "Validator for european countries VAT numbers for ActiveModel"
   s.homepage = "http://github.com/aurels/vat_validator"
-  
+
   s.version = "1.2"
   s.date = "2011-09-30"
-  
+
   s.authors = ["Aurelien Malisart", "Francois Stephany"]
   s.email = "aurelien.malisart@gmail.com"
-  
+
   s.require_paths = ["lib"]
   s.files = Dir["lib/**/*"] + Dir["spec/**/*"] + ["README.rdoc", "Rakefile"]
   s.extra_rdoc_files = ["README.rdoc"]
-  
+
   s.has_rdoc = false
 
   s.rubygems_version = "1.6.2"
