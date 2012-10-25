@@ -3,25 +3,25 @@ require 'rspec'
 require 'active_model'
 
 require File.dirname(__FILE__) + '/../lib/vat_validator.rb'
- 
+
 # Utils models =================================================================
 
 class BaseTestModel
   include ActiveModel::Serialization
   include ActiveModel::Validations
-  
+
   attr_accessor :attributes
-  
+
   def initialize(attributes = {})
     @attributes = attributes
   end
-  
+
   def read_attribute_for_validation(key)
     @attributes[key]
   end
 end
 
-class Invoice < BaseTestModel  
+class Invoice < BaseTestModel
   validates :vat_number, :vat => true
 end
 
@@ -31,12 +31,12 @@ end
 
 class CountryCheckedInvoice < BaseTestModel
   validates :vat_number, :vat => { :country_method => :country_code }
-  
+
   # Fake attribute accessor
   def country
     @attributes[:country]
   end
-  
+
   # Logic to return the country code
   def country_code
     case country.downcase

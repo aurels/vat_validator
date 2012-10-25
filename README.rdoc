@@ -26,14 +26,14 @@ Example :
 
   class Invoice < ActiveRecord::Base
     validates :vat_number, :vat => { :country_method => :country_code }
-    
+
     # Logic to return the country code
     def country_code
       case country.downcase
         when 'belgium' then 'BE'
         when 'france'  then 'FR'
         when 'sweden'  then 'SE'
-  	    # ...
+        # ...
         else nil
       end
     end
