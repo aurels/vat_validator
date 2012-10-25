@@ -53,7 +53,7 @@ countries. Check the VIES FAQ for more information about that.
 
 In your project's Gemfile :
 
-gem 'vat_validator'
+  gem 'vat_validator'
 
 = Tests
 
