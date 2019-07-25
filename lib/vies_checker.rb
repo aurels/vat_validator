@@ -21,7 +21,7 @@ module VatValidations
       begin
         response = client.request :check_vat do
           soap.body = {
-            :country_code => country_code, 
+            :country_code => country_code,
             :vat_number => vat_number
           }
         end
@@ -37,7 +37,7 @@ module VatValidations
           else
             return false
           end
-          
+
         else
           raise ViesContactError
         end
