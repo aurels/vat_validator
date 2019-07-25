@@ -1,12 +1,12 @@
-= This project is really old and unmaintained. It's kept here for legacy reasons.
+# This project is really old and unmaintained. It's kept here for legacy reasons.
 
 We advice you to use this one instead : https://github.com/yolk/valvat
 
-== Description
+## Description
 
-Use this plugin to validate VAT numbers for european countries.
+Use this plugin to validate VAT numbers for European countries.
 
-== Basic Usage
+## Basic Usage
 
 To validate a model field as a valid intracom VAT number :
 
@@ -43,7 +43,7 @@ Example :
     end
   end
 
-=== Validating the Number at VIES
+### Validating the Number at VIES
 
 It's also possible to have the VAT number validated against Europa's VIES
 webservice. Simply use the :vies option like this :
@@ -53,9 +53,9 @@ webservice. Simply use the :vies option like this :
 Keep in mind that the webservice might be offline at some time for some
 countries. Check the VIES FAQ for more information about that.
 
-== Installation
+## Installation
 
-In your project's Gemfile :
+In your project's `Gemfile` :
 
   gem 'vat_validator'
 
@@ -65,7 +65,7 @@ If you want to run the specs :
 
   rake spec
 
-== Credits
+## Credits
 
 This plugin in released under MIT license by Aurélien Malisart (see MIT-LICENSE
 file).
