@@ -1,0 +1,73 @@
+= This project is really old and unmaintained. It's kept here for legacy reasons.
+
+We advice you to use this one instead : https://github.com/yolk/valvat
+
+== Description
+
+Use this plugin to validate VAT numbers for european countries.
+
+== Basic Usage
+
+To validate a model field as a valid intracom VAT number :
+
+  validates :vat_number, :vat => true
+
+It may be optional like this :
+
+  validates :vat_number, :vat => true, :allow_blank => true
+
+If you want the VAT number's country to match another kind of country field, use
+the 'country_method' option :
+
+  validates :vat_number, :vat => { :country_method => :my_method }
+
+where it is supposed that your model has a method named 'my_method' which
+returns the country ISO code you want to match. The available country codes
+available for Europa are: DE, AT, BE, BG, CY, DK, ES, EE, FI, FR, EL, HU, IE,
+IT, LV, LT, LU, MT, NL, PL, PT, GB, RO, SK, SI, SE and CZ.
+
+Example :
+
+  class Invoice < ActiveRecord::Base
+    validates :vat_number, :vat => { :country_method => :country_code }
+
+    # Logic to return the country code
+    def country_code
+      case country.downcase
+        when 'belgium' then 'BE'
+        when 'france'  then 'FR'
+        when 'sweden'  then 'SE'
+        # ...
+        else nil
+      end
+    end
+  end
+
+=== Validating the Number at VIES
+
+It's also possible to have the VAT number validated against Europa's VIES
+webservice. Simply use the :vies option like this :
+
+  validates :vat_number, :vat => { :vies => true }
+
+Keep in mind that the webservice might be offline at some time for some
+countries. Check the VIES FAQ for more information about that.
+
+== Installation
+
+In your project's Gemfile :
+
+  gem 'vat_validator'
+
+= Tests
+
+If you want to run the specs :
+
+  rake spec
+
+== Credits
+
+This plugin in released under MIT license by Aurélien Malisart (see MIT-LICENSE
+file).
+
+(c) http://aurelien.malisart.be
